@@ -1,5 +1,5 @@
 # Design Pattern
-   This is a small study notes for OO design pattern 🔨
+   This is small study notes for OO design pattern 🔨
 
 # SOLID Principle
 
