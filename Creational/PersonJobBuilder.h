@@ -1,7 +1,9 @@
-#pragma once
+#ifndef PERSONJOBUILDER_H
+#define PERSONJOBUILDER_H
 #include <string>
 #include <iostream>
 #include "PersonBuilder.h"
+#include "Person.h"
 
 using namespace std;
 class PersonJobBuilder : public PersonBuilder
@@ -22,3 +24,4 @@ public:
         return *this;
     };
 };
+#endif

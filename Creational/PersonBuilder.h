@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PERSONBUILDER_H
+#define PERSONBUILDER_H
 #include "Person.h"
 #include "PersonAddressBuilder.h"
 #include "PersonJobBuilder.h"
@@ -6,11 +7,7 @@ class PersonBuilder{
     Person p;
     protected:
         Person &person;
-    explicit PersonBuilder(Person& person)
-    : person{person}
-    {
-
-    }
+    explicit PersonBuilder(Person &person):person{person}{}
     public:
     operator Person(){
         return move(person);
@@ -19,3 +16,4 @@ class PersonBuilder{
     PersonAddressBuilder lives();
     PersonJobBuilder works();
 };
+#endif

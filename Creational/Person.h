@@ -1,5 +1,5 @@
-
-#pragma once
+#ifndef PERSON_H
+#define PERSON_H
 #include <string>
 #include "PersonBuilder.h"
 using namespace std;
@@ -13,9 +13,8 @@ class Person{
     int annual_income = 0;
     public:
         static PersonBuilder create();
-    friend class PersonBuilder;
-    friend class PersonAddressBuilder;
-    friend class PersonJobBuilder;
+        friend class PersonBuilder;
+        friend class PersonAddressBuilder;
+        friend class PersonJobBuilder;
 };
-
-
+#endif

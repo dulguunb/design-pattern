@@ -1,14 +1,14 @@
-#pragma once
+#ifndef PERSONADDRESSBUILDER_H
+#define PERSONADDRESSBUILDER_H
 #include <string>
 #include <iostream>
 #include "PersonBuilder.h"
-
 using namespace std;
-class PersonAddressBuilder : public PersonBuilder
-{
+class PersonAddressBuilder;
+class PersonAddressBuilder : public PersonBuilder {
     typedef PersonAddressBuilder Self;
 public:
-    explicit PersonAddressBuilder(Person &person): PersonBuilder{person}{};
+    explicit PersonAddressBuilder(Person &person) :PersonBuilder{person}{};
     Self& at(string street_address){
         person.street_address = street_address;
         return *this;
@@ -23,3 +23,4 @@ public:
     };
     
 };
+#endif
