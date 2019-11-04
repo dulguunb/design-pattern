@@ -188,7 +188,7 @@ int main(){
     }; 
 ```
     If the client needs to implement the member function then it must be broken down into smaller interfaces.
-# 5) Dependency Inversion Principle
+## 5) Dependency Inversion Principle
     1) High Level modules should not depend on the Low Level modules but both should depend on abstraction.
     E.g: High level module can be reporting component it should depend on ConsoleLogger but can depend on ILogger
     2) Abstraction should not depend upon details. Details should depend on the abstractions.
@@ -280,4 +280,86 @@ int main(){
         return 0;
     }
 ```
-# Groovy pattern:
+## Groovy pattern:
+    Check GroovyBuilder.cc
+
+# Factory Pattern
+    Object creation logic becomes convulated
+    Constructor is not descriptive
+        - Name mandated by name of containing name
+        - Cannot overload with the same sets of arguments with different names
+        - Can turn into `optional parameter hell`
+    Object Creation (non piecewise unlike Builder) can be outsourced to 
+        - A seperate function (Factory Method)
+        - That may exist n seperate class (Factory)
+        - You can even have hierarchy of classes with Abstract Factory
+Example of why we need Factory Pattern:
+```cpp
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <iostream>
+using namespace std;
+enum class PointType{
+    cartessian,
+    polar
+};
+
+class Point{
+    float x,y;
+    explicit Point(float x,float y): x{x},y{y}{};
+    public:
+    Point(const float a,const float b, PointType type = PointType::cartessian){
+        if (type == PointType::cartessian){
+            x = a;
+            y = b;
+        }
+        else {
+            /// convert
+        }
+    }
+};
+```
+# Terminology:
+    Factory:
+    A factory construct used to construct object in hierarchies'
+```cpp
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <iostream>
+using namespace std;
+enum class PointType{
+    cartessian,
+    polar
+};
+
+class Point {
+    float x,y;
+    explicit Point(float x,float y): x{x},y{y}{};
+    public:
+    friend ostream & operator<<(ostream &os, const Point &obj){
+        return os << "x: " << obj.x << "y: " << obj.y << endl;
+    }
+    friend class PointFactory;
+};
+
+class PointFactory{
+    public:
+        static Point NewCartessian(const float x, const float y){
+            return Point{ x,y };
+        }
+        static Point NewPolar(const float r,const float theta){
+            return Point{r*cos(theta), r*sin(theta)};
+        }
+};
+
+int main(){
+    // Point p{1,2};
+    auto c = PointFactory::NewCartessian(1,2);
+    std::cout << c << std::endl;
+    auto p = PointFactory::NewPolar(5,M_PI_4);
+    std::cout << p << std::endl;
+    return 0;
+}
+```
+    Factory Method:
+    A function that helps to create objects. Like a constructor but more descriptive
