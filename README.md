@@ -363,3 +363,15 @@ int main(){
 ```
     Factory Method:
     A function that helps to create objects. Like a constructor but more descriptive
+# Prototype Design Pattern
+    - Shallow vs Deep copy
+    - Boost serialization
+
+    + Compilicated objects (e.g cars) aren't designed from scratch
+    - They reiterate the existing designs
+    + An existing (partially constructed design) is Prototype
+    + We make copy(clone) (prototype) and customize it
+        - requires deep copy support
+        - painful without metadata
+    + We make cloning convenient (via Factory)
+    Partially or fully initalized objects you copy (clone) and make use of
