@@ -13,7 +13,6 @@ struct Journal{
     void add(const std::string &entry){
         entries.push_back(entry);
     }
-
 };
 struct PersistanceManager{
     void save(const Journal &j, const std::string &filename){
@@ -44,7 +43,7 @@ struct Journal{
     Explanation: The reason why the second source code violates the Single Responsibility Principle is it's handling IO's which is not a part of Journal. To fix this, we need to introduce a new class that manages IO.
 
 ## 2) Open Closed Principle
-    Class should open for modification and closed for modification
+    Class should open for modification and closed for extension
 
 Problem:
 ```cpp
